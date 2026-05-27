@@ -1,0 +1,9 @@
+<h1><%= @memo[:title] %></h1>
+<p><%= @memo[:content] %></p>
+
+<a href="/memos/<%= @memo[:id] %>/edit"><button>変更</button></a>
+
+<form action="/memos/<%= @memo[:id] %>" method="post">
+  <input type="hidden" name="_method" value="delete">
+  <button type="submit">削除</button>
+</form>
