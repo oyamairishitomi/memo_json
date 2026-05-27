@@ -9,7 +9,7 @@ SinatraとJSONファイルを使ったシンプルなメモアプリです。
 ## セットアップ
 
 ```bash
-git clone <リポジトリのURL>
+git clone URL
 cd memo_json
 bundle install
 ```
