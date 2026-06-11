@@ -86,6 +86,8 @@ GEM
     rack-session (2.1.2)
       base64 (>= 0.1.0)
       rack (>= 3.0.0)
+    rackup (2.3.1)
+      rack (>= 3)
     rails-dom-testing (2.3.0)
       activesupport (>= 5.0.0)
       minitest
@@ -133,6 +135,7 @@ GEM
       unicode-emoji (~> 4.1)
     unicode-emoji (4.2.0)
     uri (1.1.1)
+    webrick (1.9.2)
 
 PLATFORMS
   aarch64-linux-gnu
@@ -147,8 +150,10 @@ PLATFORMS
 DEPENDENCIES
   erb_lint
   json
+  rackup (~> 2.3)
   rubocop-fjord
   sinatra
+  webrick
 
 BUNDLED WITH
    2.5.3

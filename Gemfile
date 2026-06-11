@@ -7,3 +7,6 @@ gem 'erb_lint'
 gem 'json'
 gem 'rubocop-fjord'
 gem 'sinatra'
+gem 'webrick'
+
+gem "rackup", "~> 2.3"

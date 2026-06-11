@@ -23,7 +23,7 @@ end
 ## XSS
 set :erb, escape_html: true
 
-get '/' do
+get '/memos' do
   @memos = read_memos
   # #read_memosの返り値が入る
   erb :index
@@ -39,7 +39,7 @@ post '/memos' do
   ## IDはメモIDの最大に＋１。変数を保持できないのでJSONから作る
   memos << new_memo
   write_memos(memos)
-  redirect '/'
+  redirect '/memos'
 end
 
 get '/memos/:id' do
@@ -58,12 +58,12 @@ patch '/memos/:id' do
   memo[:title] = params[:title]
   memo[:content] = params[:content]
   write_memos(memos)
-  redirect '/'
+  redirect "/memos/#{params[:id]}"
 end
 
 delete '/memos/:id' do
   memos = read_memos
   memos.reject! { |m| m[:id] == params[:id].to_i }
   write_memos(memos) # #消したあとの配列を上書き
-  redirect '/'
+  redirect '/memos'
 end
