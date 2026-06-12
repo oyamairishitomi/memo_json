@@ -33,9 +33,13 @@ get '/memos/new' do
   erb :new
 end
 
+def find_memo(memos, id)
+  memos.find { |m| m[:id] == id.to_i }
+end
+
 post '/memos' do
   memos = read_memos
-  new_memo = { id: (memos.map { |m| m[:id] }.max || 0) + 1, title: params[:title], content: params[:content] }
+  new_memo = { id: (memos.map { |m| m[:id] }.max || 0) + 1 }.merge(params.slice(:title, :content))
   ## IDはメモIDの最大に＋１。変数を保持できないのでJSONから作る
   memos << new_memo
   write_memos(memos)
@@ -43,18 +47,18 @@ post '/memos' do
 end
 
 get '/memos/:id' do
-  @memo = read_memos.find { |m| m[:id] == params[:id].to_i }
+  @memo = find_memo(read_memos, params[:id])
   erb :show
 end
 
 get '/memos/:id/edit' do
-  @memo = read_memos.find { |m| m[:id] == params[:id].to_i }
+  @memo = find_memo(read_memos, params[:id])
   erb :edit
 end
 
 patch '/memos/:id' do
   memos = read_memos
-  memo = memos.find { |m| m[:id] == params[:id].to_i }
+  memo = find_memo(memos, params[:id])
   memo[:title] = params[:title]
   memo[:content] = params[:content]
   write_memos(memos)
