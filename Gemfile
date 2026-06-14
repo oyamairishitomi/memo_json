@@ -9,4 +9,4 @@ gem 'rubocop-fjord'
 gem 'sinatra'
 gem 'webrick'
 
-gem "rackup", "~> 2.3"
+gem 'rackup', '~> 2.3'
