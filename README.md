@@ -1,10 +1,11 @@
 # メモアプリ
 
-SinatraとJSONファイルを使ったシンプルなメモアプリです。
+SinatraとPostgreSQLを使ったシンプルなメモアプリです。
 
 ## 動作確認環境
 
 - Ruby 3.3.0で動作を確認しています。
+- PostgreSQL 16で動作を確認しています。
 
 ## セットアップ
 
@@ -16,13 +17,22 @@ bundle install
 
 bundleをインストールすることで必要な要素を追加することができます。
 
+### データベースの準備
+
+あらかじめPostgreSQLをインストール・起動しておいてください。以下のコマンドで、データベースとテーブルを作成します。
+
+```bash
+createdb memo_app_development
+psql -d memo_app_development -f db/create_tables.sql
+```
+
 ## 起動方法
 
 ```bash
-ruby app.rb
+bundle exec ruby app.rb
 ```
 
-起動後、ブラウザで http://localhost:4567 を開いてください。
+起動後、ブラウザで http://localhost:4567/memos を開いてください。
 
 ## 機能（各機能テスト済み）
 
