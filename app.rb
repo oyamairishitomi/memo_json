@@ -8,9 +8,7 @@ enable :method_override
 set :erb, escape_html: true # XSS
 
 get '/memos' do
-  @memos = Memo.all # SELECT * FROM memos
-  # DBからメモを全部取ってきて、
-  # erbでも使えるように @memos に入れる
+  @memos = Memo.all
   erb :index
 end
 
@@ -23,8 +21,8 @@ post '/memos' do
   redirect '/memos'
 end
 
-get '/memos/:id' do # :idでIDを取得できる
-  @memo = Memo.find(params[:id]) # 指定したIDのメモを1件取得
+get '/memos/:id' do
+  @memo = Memo.find(params[:id])
   erb :show
 end
 
@@ -36,12 +34,11 @@ end
 patch '/memos/:id' do
   memo = Memo.find(params[:id])
   memo.update(title: params[:title], content: params[:content])
-  ## UPDATE/titleに各パラムを入れる
   redirect "/memos/#{params[:id]}"
 end
 
 delete '/memos/:id' do
   memo = Memo.find(params[:id])
-  memo.destroy # #memoを削除
+  memo.destroy
   redirect '/memos'
 end
