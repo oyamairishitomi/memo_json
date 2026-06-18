@@ -4,9 +4,9 @@ source 'https://rubygems.org'
 
 # gem "rails"
 gem 'erb_lint'
-gem 'json'
+gem 'pg'
 gem 'rubocop-fjord'
 gem 'sinatra'
 gem 'webrick'
 
-gem "rackup", "~> 2.3"
+gem 'rackup', '~> 2.3'
