@@ -14,7 +14,7 @@ class Memo
   end
 
   def self.all
-    DB.exec('SELECT id, title, content FROM memos').map do |row|
+    DB.exec('SELECT id, title, content FROM memos ORDER BY id').map do |row|
       Memo.new(row['id'], row['title'], row['content'])
     end
   end
@@ -29,7 +29,7 @@ class Memo
 
   def self.find(id)
     result = DB.exec_params(
-      'SELECT id, title, content FROM memos WHERE id = $1', [id]
+      'SELECT id, title, content FROM memos WHERE id = $1 LIMIT 1', [id]
     )
     Memo.new(result[0]['id'], result[0]['title'], result[0]['content'])
   end
